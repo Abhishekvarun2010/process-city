@@ -1,0 +1,15 @@
+services:
+  process-city:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: process-city
+    image: process-city:latest
+    stdin_open: true   # keep STDIN open (equivalent to -i)
+    tty: true          # allocate a pseudo-TTY (equivalent to -t)
+    volumes:
+      - .:/app         # mount project root into /app for live development
+    working_dir: /app
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
